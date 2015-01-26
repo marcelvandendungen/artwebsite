@@ -13,7 +13,6 @@ namespace Infrastructure
         public static MvcHtmlString MenuItem(this HtmlHelper htmlHelper, string linkText, string actionName, string controllerName)
         {
             string currentAction = htmlHelper.ViewContext.RouteData.GetRequiredString("action");
-            //string currentController = htmlHelper.ViewContext.ParentActionViewContext.RouteData.GetRequiredString("controller");
             string currentController = htmlHelper.ViewContext.RouteData.GetRequiredString("controller");
 
             var tb = new TagBuilder("li");
