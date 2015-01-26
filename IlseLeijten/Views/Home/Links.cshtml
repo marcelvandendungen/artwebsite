@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Core.Model.WebLink>
+
+@{
+    ViewBag.Title = "Links";
+}
+
+<table>
+
+@foreach (var item in Model) {
+    <div>
+        <div class="link">
+            @Html.DisplayFor(modelItem => item.Caption)
+        </div>
+        <div>
+            <a href="@Html.DisplayFor(modelItem => item.Address)">@Html.DisplayFor(modelItem => item.Address)</a>
+        </div>
+    </div>
+}
+
+</table>
+
+<a href="@Url.Action("Manage", "Links")" title="Manage site" id="manage">
+    <span class="glyphicon glyphicon-cog"></span>
+</a>

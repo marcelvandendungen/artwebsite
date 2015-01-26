@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="alert-info fade in alert " id="alert-info" style="display:none;">
+    <button type="button" class="close">×</button>
+    <p id="alert-message"></p>
+</div>
+
+<img src="~/Content/img/@ViewBag.frontimage" />
+
+<a href="@Url.Action("Manage", "Home")" title="Manage site" id="manage">
+    <span class="glyphicon glyphicon-cog"></span>
+</a>
+
+@section scripts {
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            {
+                $('.fb_iframe_widget').css('position', 'fixed');
+                $('.alert-info .close').on("click", function (e) {
+                    $(this).parent().hide();
+                });
+
+                var showAlert = '@(ViewBag.Alert)';
+                if (showAlert == "success")
+                {
+                    $('#alert-message').html("<strong>Thank you </strong>for your message!")
+                    $("#alert-info").removeClass('alert-error').addClass('alert-info').show();
+                }
+                if (showAlert == "failure")
+                {
+                    $('#alert-message').html("<strong>Sorry, </strong>something went wrong!")
+                    $("#alert-info").removeClass('alert-info').addClass('alert-danger').show();
+                }
+            }
+        });
+        </script>
+}

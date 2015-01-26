@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Core.Model.WebLink>
+
+@{
+    ViewBag.Title = "Manage Links";
+}
+
+<h2>Manage Links</h2>
+
+<p>
+    <a href="@Url.Action("Add")" title="New Painting">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Add Link
+    </a>
+</p>
+<table>
+    <tr>
+        <th/>
+        <th>
+            @Html.DisplayNameFor(model => model.Caption)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a href="@Url.Action("MoveUp", new { id = item.Id })" title="Move this item up">
+                <span class="glyphicon glyphicon-circle-arrow-up"></span>&nbsp;
+            </a>
+            <a href="@Url.Action("MoveDown", new { id = item.Id })" title="Move this item down">
+                <span class="glyphicon glyphicon-circle-arrow-down"></span>&nbsp;
+            </a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Caption)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", new { id = item.Id })" title="Modify this item">
+                &nbsp;<span class="glyphicon glyphicon-pencil"></span>
+            </a>
+            <a href="@Url.Action("Delete", new { id = item.Id })" title="Delete this item">
+                &nbsp;<span class="glyphicon glyphicon-remove"></span>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>

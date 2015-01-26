@@ -1,0 +1,21 @@
+﻿@model Core.Model.BioInfo
+@{
+    ViewBag.Title = "About";
+}
+
+<fieldset>
+    <legend>@Html.DisplayFor(model => model.Caption)</legend>
+    <div id="biography">
+        <p style="white-space: pre-line">@Model.Text</p>
+    </div>
+</fieldset>
+
+<div class="row">
+    <div class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-6 col-md-10 col-lg-10" style="margin-bottom:30px;">
+        <img class="img-rounded img-responsive" src="@Model.Picture" />  <!--src="~/Content/DSC_0427.JPG" />-->
+    </div>
+</div>
+
+<a href="@Url.Action("Manage", "About")" title="Manage site" id="manage">
+    <span class="glyphicon glyphicon-cog"></span>
+</a>

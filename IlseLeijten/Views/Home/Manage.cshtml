@@ -1,0 +1,16 @@
+﻿@model Core.Model.SiteDefinition
+@{
+    ViewBag.Title = "Manage Frontpage";
+}
+
+<fieldset>
+    <legend><span class="glyphicon glyphicon-pencil"></span>&nbsp;Edit the front page.</legend>
+    @using (Html.BeginForm("Save", "Home"))
+    {
+        @Html.ValidationSummary()
+        <p class="label">Front page image:</p>
+        <p>@Html.TextBoxFor(m => m.FrontPageImage, new { @class = "subject img-rounded" })</p>
+        <input type="submit" value="Save" class="btn btn-primary" />
+    }
+</fieldset>
+

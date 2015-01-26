@@ -1,0 +1,19 @@
+﻿@model Core.Model.BioInfo
+@{
+    ViewBag.Title = "Manage About";
+}
+
+<fieldset>
+    <legend><span class="glyphicon glyphicon-pencil"></span>&nbsp;Edit your bio.</legend>
+    @using (Html.BeginForm("Save", "About"))
+    {
+        @Html.ValidationSummary()
+        <p class="label">Caption:</p>
+        <p>@Html.TextBoxFor(m => m.Caption, new { @class = "subject img-rounded" })</p>
+        <p class="label">Bio:</p>
+        <p>@Html.TextAreaFor(m => m.Text, new { @cols = 80, @rows = 10, @class = "img-rounded" })</p>
+        <p class="label">Picture:</p>
+        <p>@Html.TextBoxFor(m => m.Picture, new { @class = "subject img-rounded" })</p>
+        <input type="submit" value="Save" class="btn btn-primary" />
+    }
+</fieldset>

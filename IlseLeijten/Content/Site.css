@@ -1,0 +1,219 @@
+﻿html, body{
+    height:100%;
+}
+body {
+    color: #232323;
+    background-color: #1B1B1B;
+    line-height:normal;
+}
+
+.body-content{
+    min-height:100%;
+    position:relative;
+}
+
+.navbar{
+    background-image:none;
+}
+
+.img-thumbnail {
+    background-color: #1B1B1B;
+}
+
+.navbar-inverse {
+    background-image:none;
+    background-color: #1B1B1B;
+}
+
+.firstName{
+    width:300px;
+}
+
+.subject {
+    width:515px;
+}
+
+body {
+    margin-top: 100px;
+}
+
+.container{
+    height:auto;
+    min-height:100%;
+}
+
+footer {
+    bottom: 0px;
+    width:100%;
+    position: absolute;
+    height:40px;
+    right:30px;
+}
+
+.signature {
+    margin-bottom:10px;
+}
+
+#manage {
+    clear: both;
+    bottom: 10px;
+    position: fixed;
+    right:10px;
+}
+
+.display-field {
+    color: white;
+}
+
+.display-label {
+    color: #0099cc;
+}
+
+#welcome{
+    text-transform:uppercase;
+	display:block;
+	letter-spacing:1.3em;
+	color: #666;
+	font: 0.8em normal Verdana, Arial, Helvetica, sans-serif;
+	margin-bottom:40px;
+	font-size:small;
+}
+
+#copyright {
+    color: #666;
+}
+
+.img-thumbnail {
+    border:0;
+}
+
+header, footer, nav, section {
+    display: block;
+}
+
+#copyright {
+    bottom:10px;
+    clear:both;
+    text-align:right;
+    padding-right:0.5em;
+    font-style:italic;
+    font-size:smaller;
+}
+
+.thumbnail {
+    margin-bottom: 30px;
+}
+
+.info {
+    position:fixed;
+    top: 50px;
+    left:35px;
+    font-size:20px;
+    color:white;
+}
+
+.blueimp-gallery {
+    z-index:8887;
+}
+
+.modal-content{
+    background-color:greenyellow;
+    z-index:8888888;
+}
+
+.notes {
+    display:none;
+}
+
+#paintingnote {
+    left: 20px; 
+    top: 85px; 
+    color: white; 
+    position: absolute;
+}
+
+#biography
+{
+    color:white;
+}
+
+.link, .label{
+    color: #0099cc;
+    margin-top: 20px;
+}
+
+.alerts {
+  margin: 20px;
+}
+
+.socialButtons{
+    /*clear: both;
+    bottom: 10px;
+    position: fixed;
+    left:10px;*/
+
+}
+
+th, label{
+    color: #0099cc;
+    padding-right:10px;
+    padding-left:10px;
+}
+
+td {
+    padding:5px;
+    padding-right:10px;
+    padding-left:10px;
+    color: #cccccc;
+}
+
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+/*fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+}
+
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.editor-field {
+    margin: 0.5em 0 0 0;
+}*/
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+/*.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}*/
