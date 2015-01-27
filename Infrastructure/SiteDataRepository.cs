@@ -3,8 +3,6 @@ using Core.Interface;
 using Core.Model;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Xml.Serialization;
 
 namespace Infrastructure
 {
@@ -21,7 +19,15 @@ namespace Infrastructure
         public SiteDataRepository(string path)
         {
             _location = Path.Combine(path, filename);
-            Load();
+            try
+            {
+                Load();
+            }
+            catch (DirectoryNotFoundException)
+            {
+                Directory.CreateDirectory(path);
+                Load();
+            }
         }
 
         public void AddLink(WebLink link)
