@@ -7,7 +7,7 @@ namespace Infrastructure
     /// <summary>
     /// Stores images and thumbnail in the filesystem
     /// </summary>
-    class FilesystemImageRepository : IImageRepository
+    public class FilesystemImageRepository : IImageRepository
     {
         private const string _imagesFolder = @"Content\img";
         private const string _thumbsFolder = @"Content\thumb";

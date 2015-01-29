@@ -23,6 +23,7 @@ namespace IlseLeijten
 
             container.RegisterType<IMembershipService, OpenIdMembershipService>();
             container.RegisterType<IImageManager, ImageManager>();
+            container.RegisterType<IImageRepository, FilesystemImageRepository>();
             container.RegisterType<IArtCollection, ArtCollection>();
 
             string dataPath = httpServer.MapPath("~/App_Data/");
