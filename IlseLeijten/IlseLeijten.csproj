@@ -146,6 +146,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LinksController.cs" />
     <Compile Include="Controllers\PaintingsController.cs" />
+    <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -207,6 +208,10 @@
     <Content Include="Views\Shared\_Social.cshtml" />
     <Content Include="Views\About\Manage.cshtml" />
     <Content Include="Views\Home\Manage.cshtml" />
+    <Content Include="Views\Image\Index.cshtml" />
+    <Content Include="Views\Picture\Index.cshtml" />
+    <Content Include="Views\Picture\Add.cshtml" />
+    <Content Include="Views\Picture\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">

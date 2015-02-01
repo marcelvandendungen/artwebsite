@@ -21,7 +21,7 @@
             @Html.DisplayNameFor(model => model.Year)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Filename)
+            @Html.DisplayNameFor(model => model.FileName)
         </th>
         <th></th>
     </tr>
@@ -43,7 +43,7 @@
             @Html.DisplayFor(modelItem => item.Year)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Filename)
+            @Html.DisplayFor(modelItem => item.FileName)
         </td>
         <td>
             <a href="@Url.Action("Edit", new { id = item.Id })" title="Modify this item">

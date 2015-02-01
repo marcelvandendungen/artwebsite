@@ -48,11 +48,11 @@
 <div id="links">
     @foreach (var item in Model)
     {
-        <a href="~/Content/img/@item.Filename" title="@item.Name" data-gallery>
+        <a href="https://ilseleijten.blob.core.windows.net/pictures/@item.FileName" title="@item.Name" data-gallery>
             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 img-thumbnail thumbnail">
-                <img class="img-responsive" src="~/Content/thumb/@item.Filename" alt="@item.Name" />
+                <img class="img-responsive" src="https://ilseleijten.blob.core.windows.net/thumbnails/@item.FileName" alt="@item.Name" />
             </div>
-            <span id="@item.Filename" class="notes">@item.Notes</span>
+            <span id="https://ilseleijten.blob.core.windows.net/thumbnails/@item.FileName" class="notes">@item.Notes</span>
         </a>
     }
 </div>

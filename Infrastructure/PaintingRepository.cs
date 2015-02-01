@@ -29,7 +29,7 @@ namespace Infrastructure
                                   Id = GenerateUniqueId(_paintings),
                                   Name = painting.Name,
                                   Year = painting.Year,
-                                  Filename = painting.Filename,
+                                  FileName = painting.FileName,
                                   Notes = string.Empty
                               };
             _paintings.Insert(_paintings.Count, newPainting);
@@ -39,6 +39,11 @@ namespace Infrastructure
 
         private int GenerateUniqueId(List<Painting> _paintings)
         {
+            if (_paintings.Count == 0)
+            {
+                return 0;
+            }
+
             return _paintings.Max(p => p.Id) + 1;
         }
 
@@ -56,7 +61,7 @@ namespace Infrastructure
                         Id = i,
                         Name = p.Name,
                         Year = p.Year,
-                        Filename = p.Filename,
+                        FileName = p.FileName,
                         Notes = p.Notes
                     }).ToList();
                 }

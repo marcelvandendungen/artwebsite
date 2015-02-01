@@ -49,10 +49,12 @@
     <Compile Include="Interface\IEmailer.cs" />
     <Compile Include="Interface\IImageManager.cs" />
     <Compile Include="Interface\IMembershipService.cs" />
-    <Compile Include="Interface\IImageRepository.cs" />
     <Compile Include="Interface\IPaintingRepository.cs" />
+    <Compile Include="Interface\IPictureRepository.cs" />
     <Compile Include="Interface\ISiteDataRepository.cs" />
     <Compile Include="Model\ContactForm.cs" />
+    <Compile Include="Model\Picture.cs" />
+    <Compile Include="Model\PictureFile.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\ArtistInfo.cs" />
     <Compile Include="Model\ArtCollection.cs" />

@@ -30,11 +30,11 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(m => m.Filename)
+            @Html.LabelFor(m => m.FileName)
          </div>
         <div class="editor-field">
-             @Html.TextBoxFor(m => m.Filename, new { type = "file" })
-             @Html.ValidationMessageFor(m => m.Filename)
+             @Html.EditorFor(m => m.FileName)
+             @Html.ValidationMessageFor(m => m.FileName)
          </div>
         <p>
             <input type="submit" value="Create" />

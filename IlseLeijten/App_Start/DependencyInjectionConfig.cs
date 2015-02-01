@@ -23,7 +23,6 @@ namespace IlseLeijten
 
             container.RegisterType<IMembershipService, OpenIdMembershipService>();
             container.RegisterType<IImageManager, ImageManager>();
-            container.RegisterType<IImageRepository, FilesystemImageRepository>();
             container.RegisterType<IArtCollection, ArtCollection>();
 
             string dataPath = httpServer.MapPath("~/App_Data/");
@@ -32,6 +31,10 @@ namespace IlseLeijten
             IEnumerable<string> authorizedUsers = ConfigurationManager.AppSettings["authorizedusers"].Split(';');
             container.RegisterInstance<IAuthorizedUserManager>(new AuthorizedUserManager(authorizedUsers));
             container.RegisterInstance<ISiteDataRepository>(new SiteDataRepository(dataPath));
+
+            string storageAccount = ConfigurationManager.AppSettings["storageaccount"];
+            string accountKey = ConfigurationManager.AppSettings["accountkey"];
+            container.RegisterInstance<IPictureRepository>(new AzureBlobRepository(storageAccount, accountKey));
 
             string username = ConfigurationManager.AppSettings["emailusername"];
             string password = ConfigurationManager.AppSettings["emailpassword"];
