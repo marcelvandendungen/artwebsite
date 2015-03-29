@@ -1,64 +1,42 @@
-﻿using Core.Interface;
+﻿using Microsoft.Owin.Security;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
 
 namespace IlseLeijten.Controllers
 {
     public class AccountController : Controller
     {
-        private IMembershipService _service;
-        private IAuthorizedUserManager _authorizedUserManager;
-
-        public AccountController(IMembershipService service, IAuthorizedUserManager authorizedUserManager)
+        public ActionResult Login(string returnUrl)
         {
-            _service = service;
-            _authorizedUserManager = authorizedUserManager;
+            // Request a redirect to the external login provider
+            return new ChallengeResult("Google",
+                Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
-        public ActionResult Authenticate()
+        public ActionResult ExternalLoginCallback(string returnUrl)
         {
-            return (Request.UrlReferrer != null) ? 
-                Login("https://www.google.com/accounts/o8/id") :
-                Login();
+            return new RedirectResult(returnUrl);
         }
 
-        [AllowAnonymous]
-        public ActionResult Login()
+        private class ChallengeResult : HttpUnauthorizedResult
         {
-            var user = _service.GetUser();
-
-            if (user != null)
+            public ChallengeResult(string provider, string redirectUri)
             {
-                if (user.IsSignedByProvider && _authorizedUserManager.IsAllowedUser(user.Email))
-                {
-                    var cookie = _service.CreateFormsAuthenticationCookie(user);
-                    HttpContext.Response.Cookies.Add(cookie);
-
-                    return new RedirectResult(Request.Params["ReturnUrl"] ?? "/");
-                }
+                LoginProvider = provider;
+                RedirectUri = redirectUri;
             }
 
-            // if user is not allowed to login, redirect back to home page
-            return new RedirectResult("/");
-        }
+            public string LoginProvider { get; set; }
+            public string RedirectUri { get; set; }
 
-        [AllowAnonymous]
-        [HttpPost]
-        public ActionResult Login(string openid_identifier)
-        {
-            return _service.RedirectToAuthenticationProvider(openid_identifier);
-        }
-
-        //
-        // GET: /Account/LogOff
-
-        public ActionResult LogOff()
-        {
-            _service.SignOut();
-
-            return RedirectToAction("Index", "Home");
+            public override void ExecuteResult(ControllerContext context)
+            {
+                var properties = new AuthenticationProperties() { RedirectUri = RedirectUri };
+                context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
+            }
         }
     }
 }

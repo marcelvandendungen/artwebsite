@@ -1,10 +1,12 @@
-﻿@model IEnumerable<Core.Model.Painting>
+﻿@model IEnumerable<IlseLeijten.Models.ArtWorkViewModel>
 
 @{
     ViewBag.Title = "Manage Paintings";
 }
 
-<h2>Manage Paintings</h2>
+<p class="manageHdr">
+    <span class="glyphicon glyphicon-pencil"></span>&nbsp;Manage paintings.
+</p>
 
 <p>
     <a href="@Url.Action("Add")" title="New Painting">
@@ -26,34 +28,34 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <a href="@Url.Action("MoveUp", new { id = item.Id })" title="Move this item up">
-                <span class="glyphicon glyphicon-circle-arrow-up"></span>&nbsp;
-            </a>
-            <a href="@Url.Action("MoveDown", new { id = item.Id })" title="Move this item down">
-                <span class="glyphicon glyphicon-circle-arrow-down"></span>&nbsp;
-            </a>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Year)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FileName)
-        </td>
-        <td>
-            <a href="@Url.Action("Edit", new { id = item.Id })" title="Modify this item">
-                &nbsp;<span class="glyphicon glyphicon-pencil"></span>
-            </a>
-            <a href="@Url.Action("Delete", new { id = item.Id })" title="Delete this item">
-                &nbsp;<span class="glyphicon glyphicon-remove"></span>
-            </a>
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="@Url.Action("MoveUp", new { id = item.Id })" title="Move this item up">
+                    <span class="glyphicon glyphicon-circle-arrow-up"></span>&nbsp;
+                </a>
+                <a href="@Url.Action("MoveDown", new { id = item.Id })" title="Move this item down">
+                    <span class="glyphicon glyphicon-circle-arrow-down"></span>&nbsp;
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileName)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", new { id = item.Id })" title="Modify this item">
+                    &nbsp;<span class="glyphicon glyphicon-pencil"></span>
+                </a>
+                <a href="@Url.Action("Delete", new { id = item.Id })" title="Delete this item">
+                    &nbsp;<span class="glyphicon glyphicon-remove"></span>
+                </a>
+            </td>
+        </tr>
+    }
 </table>

@@ -1,4 +1,4 @@
-﻿@model Core.Model.ContactForm
+﻿@model IlseLeijten.Models.ContactViewModel
 @{
     ViewBag.Title = "Contact";
 }
@@ -9,17 +9,17 @@
     {
         @Html.ValidationSummary()
         <p class="label">First Name:</p>
-        <p>@Html.TextBoxFor(m => m.FirstName, new { @class = "firstName img-rounded" })</p>
+        <p>@Html.TextBoxFor(m => m.FirstName, new { @class = "inputField img-rounded" })</p>
         <p class="label">Last Name:</p>
-        <p>@Html.TextBoxFor(m => m.LastName, new { @class = "firstName img-rounded" })</p>
+        <p>@Html.TextBoxFor(m => m.LastName, new { @class = "inputField img-rounded" })</p>
         <p class="label">Phone Number:</p>
         <p>@Html.TextBoxFor(m => m.PhoneNumber, new { @class = "img-rounded" })</p>
         <p class="label">Email address:</p>
-        <p>@Html.TextBoxFor(m => m.Email, new { @class = "firstName img-rounded" })</p>
+        <p>@Html.TextBoxFor(m => m.Email, new { @class = "inputField img-rounded" })</p>
         <p class="label">Subject:</p>
         <p>@Html.TextBoxFor(m => m.Subject, new { @class = "subject img-rounded" })</p>
         <p class="label">Message:</p>
-        <p>@Html.TextAreaFor(m => m.Message, new { @cols = 80, @rows = 10, @class="img-rounded" })</p>
-        <input type="submit" value="Submit" class="btn btn-primary"  />
+        <p>@Html.TextAreaFor(m => m.Message, new { @cols = 80, @rows = 10, @class = "img-rounded" })</p>
+        <input type="submit" value="Submit" class="btn btn-primary" />
     }
 </fieldset>

@@ -8,16 +8,19 @@ using System.Web;
 using System.Web.Mvc;
 using NetMail = System.Net.Mail;
 using System.Net.Mail;
+using System.Configuration;
 
 namespace IlseLeijten.Controllers
 {
     public class ContactController : Controller
     {
+        private string _toAddress;
         private IEmailer _emailer;
 
         public ContactController(IEmailer emailer)
         {
             _emailer = emailer;
+            _toAddress = ConfigurationManager.AppSettings["EmailAddress"];
         }
 
         // GET: /Contact/
@@ -33,9 +36,9 @@ namespace IlseLeijten.Controllers
         {
             if (ModelState.IsValid)
             {
-                MailMessage message = new MailMessage();    // TODO: hide behind interface?
+                MailMessage message = new MailMessage();
                 message.From = new MailAddress(model.Email);
-                message.To.Add(new MailAddress("marcel.vandendungen@gmail.com"));
+                message.To.Add(new MailAddress(_toAddress));
 
                 message.Subject = "Contact form website: " + model.Subject;
                 message.Body = _emailer.FormatBody(model);

@@ -1,5 +1,6 @@
 ﻿using Core.Interface;
 using Core.Model;
+using Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,28 +9,31 @@ using System.Web.Mvc;
 
 namespace IlseLeijten.Controllers
 {
-    [Authorize]
+    [AuthorizeUsers]
+    [RequireHttps]
     public class AboutController : Controller
     {
-        private ISiteDataRepository _siteDefinitionManager;
+        private IMetaDataRepository _metadataRepostory;
+        private SiteMetaData _siteMetaData;
 
-        public AboutController(ISiteDataRepository siteDefinitionManager)
+        public AboutController(IMetaDataRepository metadataRepostory)
         {
-            _siteDefinitionManager = siteDefinitionManager;
+            _metadataRepostory = metadataRepostory;
+            _siteMetaData = _metadataRepostory.Read();
         }
 
         public ActionResult Manage()
         {
-            return View(_siteDefinitionManager.SiteData.AboutPage);
+            return View(_siteMetaData.ArtistInfo);
         }
 
         [HttpPost]
-        public ActionResult Save(ArtistInfo info)
+        public ActionResult Save(ArtistInfo artistInfo)
         {
-            _siteDefinitionManager.SiteData.AboutPage = info;
-            _siteDefinitionManager.Save();
+            _siteMetaData.ArtistInfo = artistInfo;
+            _metadataRepostory.Save(_siteMetaData);
 
             return RedirectToAction("About", "Home");
         }
-    }
+     }
 }

@@ -1,27 +1,40 @@
 ﻿using Core.Interface;
 using Core.Model;
+using IlseLeijten.Models;
+using Infrastructure;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
 namespace IlseLeijten.Controllers
 {
+    [AuthorizeUsers]
+    [RequireHttps]
     public class PaintingsController : Controller
     {
-        private IPaintingRepository _paintingRepository;
-        private IArtCollection _artCollection;
+        private IArtRepository _artRepository;
+        private ArtCollection _artCollection;
 
-        public PaintingsController(IArtCollection artCollection, IPaintingRepository paintingRepository)
+        public PaintingsController(IArtRepository artRepository)
         {
-            _artCollection = artCollection;
-            _paintingRepository = paintingRepository;
+            _artRepository = artRepository;
+            _artCollection = _artRepository.Read();
         }
 
         [HttpGet]
-        [Authorize]
         public ActionResult Manage()
         {
-            var paintings = _artCollection.Paintings;
-            return View(paintings);
+            int idx = 0;
+
+            var viewmodel = _artCollection.Paintings.Select(p => new ArtWorkViewModel
+                {
+                    Id = idx++,
+                    Name = p.Name,
+                    FileName = p.FileName,
+                    Year = p.Year,
+                    Notes = p.Notes
+                });
+            return View(viewmodel);
         }
 
         [HttpGet]
@@ -33,7 +46,8 @@ namespace IlseLeijten.Controllers
         [HttpPost]
         public ActionResult Add(Painting painting)
         {
-            _paintingRepository.Create(painting);
+            _artCollection.Paintings.Add(painting);
+            _artRepository.Save(_artCollection);
 
             return RedirectToAction("Manage", "Paintings");
         }
@@ -42,7 +56,7 @@ namespace IlseLeijten.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var painting = FindPainting(id);
+            var painting = _artCollection.Paintings[id];
             return View(painting);
         }
 
@@ -51,7 +65,10 @@ namespace IlseLeijten.Controllers
         {
             if (ModelState.IsValid)
             {
-                _paintingRepository.Update(painting);
+                int idx = _artCollection.Paintings.FindIndex(p => p.Name == painting.Name);
+                _artCollection.Paintings.RemoveAt(idx);
+                _artCollection.Paintings.Insert(idx, painting);
+                _artRepository.Save(_artCollection);
             }
             return RedirectToAction("Manage", "Paintings");
         }
@@ -59,39 +76,40 @@ namespace IlseLeijten.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            var painting = FindPainting(id);
+            var painting = _artCollection.Paintings[id];
             
             return View(painting);
         }
 
         [HttpPost]
         public ActionResult Delete(int id, Painting painting)
-        {            
-            // delete record from collection
-            _paintingRepository.Delete(id);
+        {
+            _artCollection.Paintings.RemoveAt(id);
+            _artRepository.Save(_artCollection);
 
             return RedirectToAction("Manage", "Paintings");
         }
 
         public ActionResult MoveUp(int id)
         {
-            _paintingRepository.PromotePainting(id);
+            if (id > 0)
+            {
+                _artCollection.Paintings.PromoteEntry(id);
+                _artRepository.Save(_artCollection);
+            }
 
             return RedirectToAction("Manage", "Paintings");
         }
 
         public ActionResult MoveDown(int id)
         {
-            _paintingRepository.DemotePainting(id);
+            if (id < _artCollection.Paintings.Count - 1)
+            {
+                _artCollection.Paintings.DemoteEntry(id);
+                _artRepository.Save(_artCollection);
+            }
 
             return RedirectToAction("Manage", "Paintings");
-        }
-
-        private Painting FindPainting(int id)
-        {
-            return (from p in _artCollection.Paintings
-                    where p.Id == id
-                    select p).First();
         }
     }
 }

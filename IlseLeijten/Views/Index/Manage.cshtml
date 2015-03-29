@@ -1,11 +1,11 @@
-﻿@model Core.Model.SiteData
+﻿@model Core.Model.SiteMetaData
 @{
     ViewBag.Title = "Manage Frontpage";
 }
 
 <fieldset>
     <legend><span class="glyphicon glyphicon-pencil"></span>&nbsp;Edit the front page.</legend>
-    @using (Html.BeginForm("Save", "Home"))
+    @using (Html.BeginForm("Save", "Index"))
     {
         @Html.ValidationSummary()
         <p class="label">Front page image:</p>
@@ -13,4 +13,3 @@
         <input type="submit" value="Save" class="btn btn-primary" />
     }
 </fieldset>
-

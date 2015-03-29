@@ -1,9 +1,9 @@
-﻿@model IEnumerable<Core.Model.Painting>
+﻿@model IlseLeijten.Models.PaintingViewModel
 
 @{
     ViewBag.Title = "Paintings";
 }
-<link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+<link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
 
 <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
 <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
@@ -46,28 +46,25 @@
 </div>
 
 <div id="links">
-    @foreach (var item in Model)
+    @foreach (var item in Model.Paintings)
     {
-        <a href="https://ilseleijten.blob.core.windows.net/pictures/@item.FileName" title="@item.Name" data-gallery>
+        <a href="@Model.ImageRoot/@item.FileName" title="@item.Name" data-gallery>
             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 img-thumbnail thumbnail">
-                <img class="img-responsive" src="https://ilseleijten.blob.core.windows.net/thumbnails/@item.FileName" alt="@item.Name" />
+                <img class="img-responsive" src="@Model.ThumbnailRoot/@item.FileName" alt="@item.Name" />
             </div>
-            <span id="https://ilseleijten.blob.core.windows.net/thumbnails/@item.FileName" class="notes">@item.Notes</span>
+            @*<span id="@item.FileName" class="notes">@item.Notes</span>*@
         </a>
     }
 </div>
 
-<a href="@Url.Action("Manage", "Paintings")" title="Manage site" id="manage">
-    <span class="glyphicon glyphicon-cog"></span>
-</a>
 <div>
-    <a href="#" onclick="showModalDlg()">
+    @*<a href="#" onclick="showModalDlg()">
         <span class="info glyphicon glyphicon-info-sign"></span>
-    </a>
+    </a>*@
 </div>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
 
 @section scripts {
 <script>

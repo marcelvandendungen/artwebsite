@@ -1,12 +1,7 @@
-﻿@model IEnumerable<Core.Model.WebLink>
+﻿@model IlseLeijten.Models.LinksViewModel
 
-@{
-    ViewBag.Title = "Links";
-}
-
-<table>
-
-@foreach (var item in Model) {
+@foreach (var item in Model.Links)
+{
     <div>
         <div class="link">
             @Html.DisplayFor(modelItem => item.Caption)
@@ -16,9 +11,3 @@
         </div>
     </div>
 }
-
-</table>
-
-<a href="@Url.Action("Manage", "Links")" title="Manage site" id="manage">
-    <span class="glyphicon glyphicon-cog"></span>
-</a>

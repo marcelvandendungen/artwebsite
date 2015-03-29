@@ -11,27 +11,28 @@
     <legend>Painting</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
+        @Html.DisplayNameFor(model => model.Name)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Name)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Year)
+        @Html.DisplayNameFor(model => model.Year)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Year)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Filename)
+        @Html.DisplayNameFor(model => model.FileName)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Filename)
+        @Html.DisplayFor(model => model.FileName)
     </div>
 </fieldset>
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     <p>
         <input type="submit" value="Delete" /> |
         @Html.ActionLink("Back to List", "Index")

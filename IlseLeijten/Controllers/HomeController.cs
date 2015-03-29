@@ -1,7 +1,11 @@
-﻿using Core.Model;
-using Core.Interface;
+﻿using Core.Interface;
+using Core.Model;
+using IlseLeijten.Models;
+using Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,64 +14,76 @@ namespace IlseLeijten.Controllers
 {
     public class HomeController : Controller
     {
-        private ISiteDataRepository _siteDefinitionManager;
-        private IArtCollection _artCollection;
+        const string _imageRoot = "https://ilseleijten.blob.core.windows.net/pictures/";
+        private SiteMetaData _siteMetaData;
+        private ArtCollection _artCollection;
+        private IMetaDataRepository _metadataRepostory;
+        private IArtRepository _artRepository;
 
-        public HomeController(IArtCollection artCollection, ISiteDataRepository siteDefinitionManager)
+        public HomeController(IMetaDataRepository metadataRepostory, IArtRepository artRepository)
         {
-            _artCollection = artCollection;
-            _siteDefinitionManager = siteDefinitionManager;
+            _metadataRepostory = metadataRepostory;
+            _siteMetaData = _metadataRepostory.Read();
+
+            _artRepository = artRepository;
+            _artCollection = _artRepository.Read();
         }
 
         public ActionResult Index()
         {
-            ViewBag.frontimage = _siteDefinitionManager.SiteData.FrontPageImage;
+            var messages = Request.QueryString.GetValues("alert");
+            var alertMsg = string.Empty;
 
-            var alert = Request.QueryString.GetValues("alert");
-            if (alert != null)
+            if (messages != null)
             {
-                ViewBag.Alert = alert[0];
+                alertMsg = messages[0];
             }
-            return View();
+
+            var viewmodel = new IndexViewModel
+            {
+                FrontPageImage = _imageRoot + _siteMetaData.FrontPageImage,
+                AlertMessage = alertMsg
+            };
+
+            return View(viewmodel);
         }
 
         public ActionResult About()
         {
-            var about = _siteDefinitionManager.SiteData.AboutPage;
-            return View(about);
+            var viewModel = new AboutViewModel
+            {
+                Caption = _siteMetaData.ArtistInfo.Caption,
+                Text = _siteMetaData.ArtistInfo.Text,
+                Picture = _imageRoot + _siteMetaData.ArtistInfo.Picture
+            };
+            return View(viewModel);
         }
 
         public ActionResult Paintings()
         {
-            var paintings = _artCollection.Paintings;
-            return View(paintings);
+            var viewModel = new PaintingViewModel 
+            {
+                ImageRoot = "https://ilseleijten.blob.core.windows.net/pictures",
+                ThumbnailRoot = "https://ilseleijten.blob.core.windows.net/thumbnails",
+                Paintings = _artCollection.Paintings
+            };
+
+            return View(viewModel);
         }
 
         public ActionResult Links()
         {
-            var links = _siteDefinitionManager.SiteData.Links;
-            return View(links);
+            var viewModel = new LinksViewModel();
+            viewModel.Links = _siteMetaData.Links;
+
+            return View(viewModel);
         }
 
         public ActionResult Contact()
         {
-            return View();
-        }
+            var viewModel = new ContactViewModel();
 
-        [Authorize]
-        public ActionResult Manage()
-        {
-            return View(_siteDefinitionManager.SiteData);
-        }
-
-        [Authorize]
-        [HttpPost]
-        public ActionResult Save(SiteData site)
-        {
-            _siteDefinitionManager.SiteData.FrontPageImage = site.FrontPageImage;
-            _siteDefinitionManager.Save();
-
-            return RedirectToAction("Index", "Home");
+            return View(viewModel);
         }
     }
 }
