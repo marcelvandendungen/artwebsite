@@ -1,17 +1,11 @@
 ﻿@model Core.Model.Painting
 
-@{
-    ViewBag.Title = "Create";
-}
-
-<h2>Create</h2>
-
 @using (Html.BeginForm("Add", "Paintings", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>New Painting</legend>
+        <legend><span class="glyphicon glyphicon-pencil"></span>&nbsp;New painting.</legend>
 
         <div class="editor-label">
             @Html.LabelFor(m => m.Name)
@@ -41,6 +35,11 @@
         </p>
     </fieldset>
 }
+<div>
+    <a href="@Url.Action("Add", "Picture")" title="Add Picture">
+        <span class="glyphicon glyphicon-picture"></span>&nbsp;Add Picture
+    </a>
+</div>
 
 <div>
     @Html.ActionLink("Back to List", "Index")

@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D5A9970B-3FE6-4C2A-A687-EECC4B8026C4}</ProjectGuid>
+    <ProjectGuid>{DA2B1E6A-0B5D-40BC-A3A8-238309585C64}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IlseLeijten</RootNamespace>
-    <AssemblyName>IlseLeijten2</AssemblyName>
+    <AssemblyName>IlseLeijten</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
@@ -144,6 +144,7 @@
     <Compile Include="AuthorizeUsers.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="Models\ArtWorkViewModel.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
@@ -216,6 +217,9 @@
     <Content Include="Views\Paintings\Add.cshtml" />
     <Content Include="Views\Paintings\Delete.cshtml" />
     <Content Include="Views\Paintings\Edit.cshtml" />
+    <Content Include="Views\Picture\Index.cshtml" />
+    <Content Include="Views\Picture\Add.cshtml" />
+    <Content Include="Views\Picture\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

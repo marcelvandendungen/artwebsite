@@ -1,33 +1,13 @@
-﻿using AOOR.Utilities;
-using Core.Interface;
-using Core.Model;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Xml.Serialization;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Core.Model
 {
-    public class ArtCollection : IArtCollection
+    public class ArtCollection
     {
-        private IPaintingRepository _paintingRepository;
-        private IEnumerable<Painting> _paintings;
-
-        public ArtCollection(IPaintingRepository paintingRepository)
-        {
-            _paintingRepository = paintingRepository;
-        }
-
-        public IEnumerable<Painting> Paintings
-        {
-            get
-            {
-                if (_paintings == null)
-                {
-                    _paintings = _paintingRepository.Read();
-                }
-                return _paintings;
-            }
-        }
+        public List<Painting> Paintings { get; set; }
     }
 }

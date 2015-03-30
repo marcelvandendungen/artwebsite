@@ -1,15 +1,11 @@
 ﻿@model Core.Model.WebLink
 
-@{
-    ViewBag.Title = "Edit Link";
-}
-
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>New Link</legend>
+        <legend><span class="glyphicon glyphicon-pencil"></span>&nbsp;Edit link.</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Caption)

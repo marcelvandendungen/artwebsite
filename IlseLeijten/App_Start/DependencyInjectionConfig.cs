@@ -33,6 +33,10 @@ namespace IlseLeijten
             string smtpHost = ConfigurationManager.AppSettings["smtphost"];
             container.RegisterType<IEmailer, Emailer>(new InjectionConstructor(username, password, smtpHost));
 
+            string storageAccount = ConfigurationManager.AppSettings["storageaccount"];
+            string accountKey = ConfigurationManager.AppSettings["accountkey"];
+	        container.RegisterInstance<IPictureRepository>(new AzureBlobRepository(storageAccount, accountKey));
+
             return new UnityControllerFactory(container);
         }
     }

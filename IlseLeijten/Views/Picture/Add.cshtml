@@ -1,0 +1,33 @@
+﻿@model Core.Model.PictureFile
+
+<p class="manageHdr">
+    <span class="glyphicon glyphicon-pencil"></span>&nbsp;Add picture.
+</p>
+
+@using (Html.BeginForm("Add", "Picture", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>@ViewBag.Title</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(m => m.Location)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.Location, new { type = "file" })
+            @Html.ValidationMessageFor(m => m.Location)
+        </div>
+        <p>
+            <input type="submit" value="Upload" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
