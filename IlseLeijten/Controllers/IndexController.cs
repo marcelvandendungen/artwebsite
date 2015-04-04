@@ -27,6 +27,7 @@ namespace IlseLeijten.Controllers
             return View(_siteMetadata);
         }
 
+        [ValidateAntiForgeryToken]
         public ActionResult Save(SiteMetaData siteMetadata)
         {
             _siteMetadata.FrontPageImage = siteMetadata.FrontPageImage;

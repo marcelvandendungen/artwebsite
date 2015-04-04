@@ -28,6 +28,7 @@ namespace IlseLeijten.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(ArtistInfo artistInfo)
         {
             _siteMetaData.ArtistInfo = artistInfo;

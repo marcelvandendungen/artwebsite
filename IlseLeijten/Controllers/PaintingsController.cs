@@ -44,6 +44,7 @@ namespace IlseLeijten.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Add(Painting painting)
         {
             _artCollection.Paintings.Add(painting);
@@ -61,6 +62,7 @@ namespace IlseLeijten.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(Painting painting)
         {
             if (ModelState.IsValid)
@@ -82,6 +84,7 @@ namespace IlseLeijten.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, Painting painting)
         {
             _artCollection.Paintings.RemoveAt(id);

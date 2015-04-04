@@ -19,6 +19,7 @@ namespace IlseLeijten.Controllers
             _pictureRepository = pictureRepository;
         }
 
+        [HttpGet]
         public ActionResult List()
         {
             IEnumerable<Picture> pictures = _pictureRepository.GetPictures();
@@ -33,6 +34,7 @@ namespace IlseLeijten.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Add(PictureFile pictureFile)
         {
             if (Request.Files.Count > 0)

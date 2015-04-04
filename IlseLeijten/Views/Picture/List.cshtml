@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Core.Model.Picture>
+﻿@using Infrastructure
+@model IEnumerable<Core.Model.Picture>
 
 @{
     ViewBag.Title = "Manage Pictures";
@@ -21,7 +22,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.Thumbnail(item.Name, item.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Location)

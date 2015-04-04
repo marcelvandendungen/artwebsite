@@ -7,6 +7,7 @@
     <legend><span class="glyphicon glyphicon-pencil"></span>&nbsp;Edit the front page.</legend>
     @using (Html.BeginForm("Save", "Index"))
     {
+        @Html.AntiForgeryToken();
         @Html.ValidationSummary()
         <p class="label">Front page image:</p>
         <p>@Html.TextBoxFor(m => m.FrontPageImage, new { @class = "subject img-rounded" })</p>

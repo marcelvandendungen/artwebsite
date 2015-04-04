@@ -7,6 +7,7 @@
     <legend><span class="glyphicon glyphicon-pencil"></span>&nbsp;Edit your bio.</legend>
     @using (Html.BeginForm("Save", "About"))
     {
+        @Html.AntiForgeryToken()
         @Html.ValidationSummary()
         <p class="label">Caption:</p>
         <p>@Html.TextBoxFor(m => m.Caption, new { @class = "subject img-rounded" })</p>

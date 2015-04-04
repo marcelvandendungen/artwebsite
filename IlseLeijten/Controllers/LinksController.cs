@@ -44,6 +44,7 @@ namespace IlseLeijten.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Add(WebLink link)
         {
             _siteMetaData.Links.Add(link);
@@ -59,6 +60,7 @@ namespace IlseLeijten.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(WebLink link, int id)
         {
             _siteMetaData.Links.RemoveAt(id);

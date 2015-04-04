@@ -2,6 +2,7 @@
 
 @using (Html.BeginForm("Add", "Paintings", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    @Html.AntiForgeryToken();
     @Html.ValidationSummary(true)
 
     <fieldset>

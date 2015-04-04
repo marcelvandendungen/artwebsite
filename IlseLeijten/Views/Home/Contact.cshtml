@@ -7,6 +7,7 @@
     <legend><span class="glyphicon glyphicon-envelope"></span>&nbsp;Leave a message.</legend>
     @using (Html.BeginForm("Send", "Contact"))
     {
+        @Html.AntiForgeryToken()
         @Html.ValidationSummary()
         <p class="label">First Name:</p>
         <p>@Html.TextBoxFor(m => m.FirstName, new { @class = "inputField img-rounded" })</p>

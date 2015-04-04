@@ -32,6 +32,7 @@ namespace IlseLeijten.Controllers
 
         // POST: /Contact/
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Send(ContactForm model)
         {
             if (ModelState.IsValid)
